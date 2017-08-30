@@ -59,9 +59,31 @@ Un Posts podra tener muchas Etiquetas y una Etiqueta podra tener muchos Post
 //PARA REFRESCAR EL AUTOLOADER
     $ composer dumpautoload
 
+//PARA REALIZAR LAS OPCIONES QUE TRAE CADA COMANDO 
+//PODEMOS EJECUTAR -h y luego el nombre del comando
+    $ php artisan -h make:auth
 
+//ESTO LLAMA A LA CLASE ERROR AGREGANDO UN CAMPO ROJO EN ERROR DE VALIDACIÓN
+    {{ $errors->has('password') ? ' has-error' : '' }}
 
+//LA FUNCION OLD LO QUE HACE ES QUE PERSISTA EN CASO DE QUE HAYA UN ERROR DE VALIDACIÓN
+//PARA QUE NO TENGAMOS QUEVOLVER A ESCRIBIRLO 
+//REQUIRED para que no nos permita enviar el campo vacio
+//AUTOFOCUS para que el cursor se ubique en ese campo y tengan q escribir en ese campo imediatamente despues de cargar la pagina
+     <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
 
+//CREAR UN CONTROLADOR DENTRO DE UNA CARPETA
+//con este comando se crea la carpeta Admin 
+     php artisan make:controller Admin/PostsController
 
+<!-- UN MIDDLEWARE ES SIMPLEMENTE UNA CLASE QUE INTERCEPTA UNA PETICIÓN HTTP LA
+FILTRA Y DEVUELVE UNA RESPUESTA -->
+
+//DIFERENCIA ENTRE @yield('') Y @stack('') 
+//estos dos haceen lo mismo pero 
+//El problema es que cuando incluimos muchos archivos el @yield('') se sobre escribe 
+//En cambio con el @stack lo que ingresemos ahi ingresa uno debajo del otro
+//independiente en que nivel estemos en la inclución del archivo
+//En cambio @stack no sobre escribe los archivos que incluye ahi 
 
 
