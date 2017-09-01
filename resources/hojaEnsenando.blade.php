@@ -85,5 +85,41 @@ FILTRA Y DEVUELVE UNA RESPUESTA -->
 //En cambio con el @stack lo que ingresemos ahi ingresa uno debajo del otro
 //independiente en que nivel estemos en la inclución del archivo
 //En cambio @stack no sobre escribe los archivos que incluye ahi 
+    @yield('')        @stack('styles') =>   @push('styles')    @endpush
 
 
+
+////VALIDACIONES
+///En el controlador antes de gardar
+    $this->validate($request, [
+            'title' => 'required'
+            ]);
+///Para mostrar el mensaje
+    <div class="form-group {{ $errors->has('title') ? sitiene errores : no tiene errores}} ">
+
+//Asi debugueamos
+    dd($request->get('title'));
+
+//Para ver si es false y true
+    dd($request->has('title'));    
+
+//TODO esto es como se valida pero la funcion
+    value="{{ old('title') }}" //es para que si hay un error 
+//al enviar un formulario lo escrito en el campo no se tenga que volver a escribir
+//<input name="title" 
+//        type="text"
+//        value="{{ old('title') }}" 
+//        placeholder="Ingresa aqui el título de la publicación" 
+//        class="form-control">
+//{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
+
+//EL EL TEXTAREA EN lugar de darle un atributo VALUE simplemente lo coloco asi
+    <textarea rows="10" id="editor" name="body" type="text" class="form-control" placeholder="Ingresa aqui el contenido de la publicación">{{ old('body') }}</textarea>
+
+//DEBUGUAR un array 
+    <label>Etiquetas{{ var_dump(old('tags')) }} </label>
+    
+
+
+
+//

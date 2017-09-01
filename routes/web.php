@@ -13,6 +13,7 @@
 
 
 Route::get('/','PagesController@home');
+Route::get('blog/{post}','PostsController@show');
 //Route::get('/', function () {
 //	$posts = App\Post::latest('published_at')->get();
 //    return view('welcome', compact('posts'));

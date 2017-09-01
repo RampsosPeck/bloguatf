@@ -55,7 +55,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -272,6 +272,10 @@ desired effect
 
     <!-- Main content -->
     <section class="content">
+      
+      @if (session()->has('flash'))
+           <div class="alert alert-success">{{ session('flash') }} </div>
+      @endif
 
       @yield('content')
 
