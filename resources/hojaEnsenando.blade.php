@@ -119,7 +119,28 @@ FILTRA Y DEVUELVE UNA RESPUESTA -->
 //DEBUGUAR un array 
     <label>Etiquetas{{ var_dump(old('tags')) }} </label>
     
+//ASI PODEMOS MANDARME UNA PARAMETRO CUANDO INCLUIMOS UN ARCHIVO 
+     @include('partials.social-link', ['description' => $post->title])
+
+//SE USO ESTE COMANDO para hacer un sublink entre el public de storage y el la carpeta public de la aplicacion
+        php artisan storage:link
+
+//PARA personalizar la paginación 
+    php artisan vendor:publish --tag=laravel-pagination
+
+//PARA HAT RELOAD solo para que vuelva a cargar los estilos 
+// En mac
+    Shit+R
+// En Windows
+    Ctrol+F5 
+
+//Un Mutador se Define
+    public function getNameAttribute($name)
+    {}
+
+//Un Seteador se define 
+    public function setNameAttribute($name)
+    {}
 
 
-
-//
+    

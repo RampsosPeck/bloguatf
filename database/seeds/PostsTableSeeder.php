@@ -1,4 +1,5 @@
 <?php
+use Bloguatf\Tag;
 use Bloguatf\Post;
 use Bloguatf\Category;
 use Carbon\Carbon;
@@ -13,9 +14,14 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        
+
     	Post::truncate();
         
         Category::truncate();
+
+        Tag::truncate();
         
         $category = new Category;
         $category->name = "Categoria 1";
@@ -36,6 +42,8 @@ class PostsTableSeeder extends Seeder
         $post->category_id  = 2;
         $post->save();
 
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 1']));
+
         $post = new Post;
         $post->title   = "Mi segundo posts";
         $post->url     = str_slug("Mi segundo posts");
@@ -44,6 +52,9 @@ class PostsTableSeeder extends Seeder
         $post->published_at = Carbon::now()->subDays(2);
         $post->category_id  = 1;
         $post->save();
+
+
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 2']));
 
         $post = new Post;
         $post->title   = "Mi tercero posts";
@@ -54,6 +65,9 @@ class PostsTableSeeder extends Seeder
         $post->category_id  = 1;
         $post->save();
 
+
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 3']));
+
         $post = new Post;
         $post->title   = "Mi cuarto posts";
         $post->url     = str_slug("Mi cuarto posts");
@@ -62,6 +76,9 @@ class PostsTableSeeder extends Seeder
         $post->published_at = Carbon::now()->subDays(1);
         $post->category_id  = 1;
         $post->save();
+
+
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 4']));
 
     }
 }

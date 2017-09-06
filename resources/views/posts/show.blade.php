@@ -6,7 +6,16 @@
 
 @section('content')
 	
-  <article class="post image-w-text container">
+  <article class="post container">
+          @if ($post->photos->count() === 1)
+              <figure><img src="{{ url($post->photos->first()->url) }} " class="img-responsive" alt=""></figure>
+          @elseif($post->photos->count() > 1)
+              @include('posts.carousel')
+          @elseif($post->iframe)
+              <div class="video">
+                  {!! $post->iframe !!}
+              </div>
+          @endif
     <div class="content-post">
       <header class="container-flex space-between">
         <div class="date">
@@ -24,19 +33,7 @@
         </div>
 
         <footer class="container-flex space-between">
-          <div class="buttons-social-media-share">
-            <ul class="share-buttons">
-	          <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request()->fullUrl() }}&title={{ $post->title }}" 
-	              title="Compartir on Facebook" 
-	              target="_blank">
-	              <img alt="Share on Facebook" src="/img/flat_web_icon_set/Facebook.png">
-	              </a>
-              </li>
-              <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank" title="Tweet"><img alt="Tweet" src="/img/flat_web_icon_set/Twitter.png"></a></li>
-              <li><a href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+"><img alt="Share on Google+" src="/img/flat_web_icon_set/Google-plus.png"></a></li>
-              <li><a href="http://pinterest.com/pin/create/button/?url=&description=" target="_blank" title="Pin it"><img alt="Pin it" src="/img/flat_web_icon_set/Pinterest.png"></a></li>
-            </ul>
-          </div>
+          @include('partials.social-link', ['description' => $post->title])
           <div class="tags container-flex">
           		@foreach ($post->tags as $tag)
           			 <span class="tag c-gris"># {{ $tag->name }}</span>
@@ -53,8 +50,15 @@
 
 @stop
 
-
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+@endpush
 
 @push('scripts')
 <script id="dsq-count-scr" src="//zendero.disqus.com/count.js" async></script>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="/js/bootstrap.js" async></script>
 @endpush

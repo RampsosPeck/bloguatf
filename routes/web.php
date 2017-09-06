@@ -13,7 +13,10 @@
 
 
 Route::get('/','PagesController@home');
-Route::get('blog/{post}','PostsController@show');
+Route::get('blog/{post}','PostsController@show')->name('posts.show');
+Route::get('categorias/{category}','CategoriesController@show')->name('categories.show');
+Route::get('tags/{tag}','TagsController@show')->name('tags.show');
+
 //Route::get('/', function () {
 //	$posts = App\Post::latest('published_at')->get();
 //    return view('welcome', compact('posts'));
@@ -36,7 +39,13 @@ function(){
 	Route::get('posts', 'PostsController@index')->name('admin.posts.index');	
 	Route::get('posts/create', 'PostsController@create')->name('admin.posts.create');
 	Route::post('posts', 'PostsController@store')->name('admin.posts.store');
-	//Rutas de administración 
+	Route::get('posts/{post}', 'PostsController@edit')->name('admin.posts.edit');
+	Route::put('posts/{post}', 'PostsController@update')->name('admin.posts.update');
+
+
+	Route::post('posts/{post}/photos', 'PhotosController@store')->name('admin.posts.photos.store');
+	//Rutas de administración
+	Route::delete('photos/{photo}','PhotosController@destroy')->name('admin.photos.destroy'); 
 
 });
 //
